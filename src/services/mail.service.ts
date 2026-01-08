@@ -53,7 +53,8 @@ export async function sendContactEmail(
   message: string
 ): Promise<SMTPTransport.SentMessageInfo> {
   const transporter = getTransporter();
-  const adminEmail = process.env.EMAIL_USER as string;
+  const emailFrom = process.env.EMAIL_FROM as string;
+  const emailTo = process.env.EMAIL_TO as string;
   const now = new Date().toLocaleString("en-US", { timeZone: "UTC" });
 
   const textContent = [
@@ -82,8 +83,8 @@ export async function sendContactEmail(
     </div>
   `;
   const mailOptions: Mail.Options = {
-    from: adminEmail, // use authenticated sender for DMARC/SPF compliance
-    to: "wlouislouisy@gmail.com",
+    from: emailFrom, // use authenticated sender for DMARC/SPF compliance
+    to: emailTo,
     subject,
     text: textContent,
     html: htmlContent,
