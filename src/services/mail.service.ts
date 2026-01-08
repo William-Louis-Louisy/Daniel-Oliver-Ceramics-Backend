@@ -83,7 +83,7 @@ export async function sendContactEmail(
   `;
   const mailOptions: Mail.Options = {
     from: adminEmail, // use authenticated sender for DMARC/SPF compliance
-    to: adminEmail,
+    to: "wlouislouisy@gmail.com",
     subject,
     text: textContent,
     html: htmlContent,
